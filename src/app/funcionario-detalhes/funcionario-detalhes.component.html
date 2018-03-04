@@ -1,0 +1,13 @@
+<div class="container">
+  <br/>
+  <h1>{{ _funcionario.nome }}</h1>
+  <dl class="list">
+    <dt>Código</dt>
+    <dd>{{ _funcionario.id }}</dd>
+    <dt>Nascimento</dt>
+    <dd>{{ _funcionario.nascimento | date:'dd/MM/yyyy' }}</dd>
+    <dt>Salário</dt>
+    <dd>{{ _funcionario.salario }}</dd>
+  </dl>
+  <a [routerLink]="['/funcionario']">Voltar</a>
+</div>

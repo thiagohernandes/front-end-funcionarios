@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Adicionando novo funcionário</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form (ngSubmit)="salvarFuncionario()" #funcionarioForm="ngForm">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" [(ngModel)]="_funcionario.nome" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Nascimento</label>
+          <input type="date" placeholder="yyyy-MM-dd" class="form-control" 
+          [(ngModel)]="_funcionario.nascimento" name="nascimento" required>
+        </div>
+        <div class="form-group">
+          <label for="name">Salario</label>
+          <input type="number" class="form-control" [(ngModel)]="_funcionario.salario" 
+          name="salario" required>
+        </div>        
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" 
+          [disabled]="!funcionarioForm.form.valid">Salvar</button>
+          <a [routerLink]="['/funcionario']">Voltar/cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

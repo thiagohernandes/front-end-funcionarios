@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Funcionários</h1>
+  <button [routerLink]="['/novo-funcionario']" type="button" class="btn btn-primary">
+    Novo</button>
+ 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Nascimento</th>
+        <th>Salário</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let funcionario of _funcionarios">
+        <td>{{ funcionario.id }}</td>
+        <td>{{ funcionario.nome }}</td>
+        <td>{{ funcionario.nascimento | date:'dd/MM/yyyy'}}</td>
+        <td>R$ {{ funcionario.salario }}</td>
+        <td><a [routerLink]="['/funcionario-detalhe', funcionario.id]" 
+          class="btn btn-info">Detalhes</a> | 
+          <a [routerLink]="['/funcionario-edicao', funcionario.id]" 
+          class="btn btn-success">Alterar</a> |
+          <button type="button" class="btn btn-danger" (click)="setCurrentFuncionario(funcionario)"
+          data-toggle="modal" data-target="#modalConfirmacaoExclusao">
+              Excluir
+            </button>
+        </td>
+     </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+<div class="modal fade" id="modalConfirmacaoExclusao" tabindex="-1" 
+  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label>Deseja mesmo excluir o funcionário</label><br/>
+          <h2>{{_currentFuncionario.nome}}</h2>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" 
+          (click)="apagarFuncionario(_currentFuncionario.id)" data-dismiss="modal">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
